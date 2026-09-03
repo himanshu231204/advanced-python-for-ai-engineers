@@ -1,6 +1,6 @@
 # Mini Projects
 
-**Status:** 🚧 In Progress (2/6 written)
+**Status:** 🚧 In Progress (3/6 written)
 
 Each project combines multiple modules from the numbered curriculum into a small, realistic
 AI-engineering build. These are where the individual concepts (asyncio, Pydantic, decorators,
