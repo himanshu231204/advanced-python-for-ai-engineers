@@ -120,6 +120,7 @@ content style rules every module follows once written.
 | [`22-dependency-injection`](22-dependency-injection/) | ✅ Written |
 | [`23-packaging-modern-python`](23-packaging-modern-python/) | ✅ Written |
 | [`24-performance-memory`](24-performance-memory/) | ✅ Written |
+| [`25-gil-processes-threads`](25-gil-processes-threads/) | ✅ Written |
 | everything else | 🚧 Planned |
 
 Check each folder's `README.md` for its current status and planned subtopics.
