@@ -94,8 +94,12 @@ content style rules every module follows once written.
 | 🚧 Planned | Folder + scope exist; full lesson not yet written |
 | ✅ Written | Follows the full topic template with runnable code |
 
-All 29 curriculum modules, `code-reading/`, `debugging/`, and all 6 projects are currently
-`🚧 Planned`. Check each folder's `README.md` for its current status and planned subtopics.
+| Module | Status |
+|---|---|
+| [`01-functions`](01-functions/) | ✅ Written |
+| everything else | 🚧 Planned |
+
+Check each folder's `README.md` for its current status and planned subtopics.
 
 ## Setup
 
