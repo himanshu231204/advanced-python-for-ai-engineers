@@ -101,6 +101,7 @@ content style rules every module follows once written.
 | [`03-asyncio`](03-asyncio/) | ✅ Written |
 | [`04-async-generators-streaming`](04-async-generators-streaming/) | ✅ Written |
 | [`05-context-managers`](05-context-managers/) | ✅ Written |
+| [`06-decorators`](06-decorators/) | ✅ Written |
 | everything else | 🚧 Planned |
 
 Check each folder's `README.md` for its current status and planned subtopics.
