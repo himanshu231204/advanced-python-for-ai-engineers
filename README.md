@@ -154,15 +154,15 @@ from inside that folder instead — see that project's `README.md`.
 
 ## How to run tests
 
-Testing conventions live in [`19-testing-pytest/`](19-testing-pytest/) once written. Until
-then, individual examples are self-checking (they print expected output) rather than backed
-by a test suite.
+Testing conventions live in [`19-testing-pytest/`](19-testing-pytest/). Most module examples
+are self-checking (they print expected output) rather than backed by a test suite; project
+05 has a real `pytest` suite — see [`projects/05-production-ai-service`](projects/05-production-ai-service/).
 
 ## Roadmap
 
-See [`AGENTS.md`](AGENTS.md) for how content gets added. A dedicated `ROADMAP.md` with
-phase-by-phase priority, difficulty, and prerequisites will be added as the curriculum fills
-in.
+See [`ROADMAP.md`](ROADMAP.md) for a phased, paced path through the curriculum (with
+checkpoints and an alternative order for readers who already know foundational Python), and
+[`AGENTS.md`](AGENTS.md) for how content gets added.
 
 ## Contributing / extending
 

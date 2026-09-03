@@ -41,7 +41,7 @@ advanced-python-for-ai-engineers/
 ├── README.md                 Main entry point, learning order, setup
 ├── AGENTS.md                 This file — content rules for any agent
 ├── CLAUDE.md                 Claude Code–specific operating notes
-├── ROADMAP.md                (planned) phased learning roadmap
+├── ROADMAP.md                phased learning roadmap
 ├── CHEATSHEET.md             (planned) master cheat sheet index
 ├── INTERVIEW.md              (planned) interview question bank
 ├── PATTERNS.md               (planned) reusable pattern library
