@@ -45,7 +45,7 @@ advanced-python-for-ai-engineers/
 ├── CHEATSHEET.md             master cheat sheet index
 ├── INTERVIEW.md              interview question bank
 ├── PATTERNS.md               reusable pattern library
-├── GLOSSARY.md                (planned) term glossary
+├── GLOSSARY.md                term glossary
 ├── PYTHON_TO_AI_ENGINEERING.md (planned) concept -> application map
 │
 ├── 00-python-foundation-review/   Foundation
