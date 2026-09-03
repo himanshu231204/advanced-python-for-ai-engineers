@@ -122,6 +122,7 @@ content style rules every module follows once written.
 | [`24-performance-memory`](24-performance-memory/) | ✅ Written |
 | [`25-gil-processes-threads`](25-gil-processes-threads/) | ✅ Written |
 | [`26-contextvars`](26-contextvars/) | ✅ Written |
+| [`27-production-python-patterns`](27-production-python-patterns/) | ✅ Written |
 | everything else | 🚧 Planned |
 
 Check each folder's `README.md` for its current status and planned subtopics.
