@@ -173,6 +173,7 @@ Cross-curriculum references that sit alongside the numbered modules:
 - [`INTERVIEW.md`](INTERVIEW.md) — every module's interview questions in one bank
 - [`PATTERNS.md`](PATTERNS.md) — reusable patterns gathered by theme, across modules and projects
 - [`GLOSSARY.md`](GLOSSARY.md) — alphabetical glossary of terms used throughout the curriculum
+- [`PYTHON_TO_AI_ENGINEERING.md`](PYTHON_TO_AI_ENGINEERING.md) — organized by AI-engineering task instead of by module
 
 ## Contributing / extending
 

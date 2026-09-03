@@ -46,7 +46,7 @@ advanced-python-for-ai-engineers/
 ├── INTERVIEW.md              interview question bank
 ├── PATTERNS.md               reusable pattern library
 ├── GLOSSARY.md                term glossary
-├── PYTHON_TO_AI_ENGINEERING.md (planned) concept -> application map
+├── PYTHON_TO_AI_ENGINEERING.md concept -> application map
 │
 ├── 00-python-foundation-review/   Foundation
 ├── 01-functions/                  Level 1
