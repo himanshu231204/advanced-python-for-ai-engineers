@@ -105,6 +105,7 @@ content style rules every module follows once written.
 | [`07-type-hints`](07-type-hints/) | ✅ Written |
 | [`08-dataclasses`](08-dataclasses/) | ✅ Written |
 | [`09-pydantic`](09-pydantic/) | ✅ Written |
+| [`10-advanced-oop`](10-advanced-oop/) | ✅ Written |
 | everything else | 🚧 Planned |
 
 Check each folder's `README.md` for its current status and planned subtopics.
