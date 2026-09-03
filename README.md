@@ -97,6 +97,7 @@ content style rules every module follows once written.
 | Module | Status |
 |---|---|
 | [`01-functions`](01-functions/) | ✅ Written |
+| [`02-iterators-generators`](02-iterators-generators/) | ✅ Written |
 | everything else | 🚧 Planned |
 
 Check each folder's `README.md` for its current status and planned subtopics.
