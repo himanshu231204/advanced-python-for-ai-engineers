@@ -103,6 +103,7 @@ content style rules every module follows once written.
 | [`05-context-managers`](05-context-managers/) | ✅ Written |
 | [`06-decorators`](06-decorators/) | ✅ Written |
 | [`07-type-hints`](07-type-hints/) | ✅ Written |
+| [`08-dataclasses`](08-dataclasses/) | ✅ Written |
 | everything else | 🚧 Planned |
 
 Check each folder's `README.md` for its current status and planned subtopics.
