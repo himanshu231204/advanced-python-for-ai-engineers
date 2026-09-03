@@ -114,6 +114,7 @@ content style rules every module follows once written.
 | [`16-caching`](16-caching/) | ✅ Written |
 | [`17-queues-background-tasks`](17-queues-background-tasks/) | ✅ Written |
 | [`18-serialization`](18-serialization/) | ✅ Written |
+| [`19-testing-pytest`](19-testing-pytest/) | ✅ Written |
 | everything else | 🚧 Planned |
 
 Check each folder's `README.md` for its current status and planned subtopics.
