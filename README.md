@@ -123,6 +123,7 @@ content style rules every module follows once written.
 | [`25-gil-processes-threads`](25-gil-processes-threads/) | ✅ Written |
 | [`26-contextvars`](26-contextvars/) | ✅ Written |
 | [`27-production-python-patterns`](27-production-python-patterns/) | ✅ Written |
+| [`28-ai-engineering-patterns`](28-ai-engineering-patterns/) | ✅ Written |
 | everything else | 🚧 Planned |
 
 Check each folder's `README.md` for its current status and planned subtopics.
