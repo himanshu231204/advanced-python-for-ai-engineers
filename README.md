@@ -108,6 +108,7 @@ content style rules every module follows once written.
 | [`10-advanced-oop`](10-advanced-oop/) | ✅ Written |
 | [`11-protocols-generics`](11-protocols-generics/) | ✅ Written |
 | [`12-concurrency`](12-concurrency/) | ✅ Written |
+| [`13-httpx-async-http`](13-httpx-async-http/) | ✅ Written |
 | everything else | 🚧 Planned |
 
 Check each folder's `README.md` for its current status and planned subtopics.
