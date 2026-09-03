@@ -43,7 +43,7 @@ advanced-python-for-ai-engineers/
 ├── CLAUDE.md                 Claude Code–specific operating notes
 ├── ROADMAP.md                phased learning roadmap
 ├── CHEATSHEET.md             master cheat sheet index
-├── INTERVIEW.md              (planned) interview question bank
+├── INTERVIEW.md              interview question bank
 ├── PATTERNS.md               (planned) reusable pattern library
 ├── GLOSSARY.md                (planned) term glossary
 ├── PYTHON_TO_AI_ENGINEERING.md (planned) concept -> application map
