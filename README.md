@@ -117,6 +117,7 @@ content style rules every module follows once written.
 | [`19-testing-pytest`](19-testing-pytest/) | ✅ Written |
 | [`20-logging-observability`](20-logging-observability/) | ✅ Written |
 | [`21-config-environments`](21-config-environments/) | ✅ Written |
+| [`22-dependency-injection`](22-dependency-injection/) | ✅ Written |
 | everything else | 🚧 Planned |
 
 Check each folder's `README.md` for its current status and planned subtopics.
