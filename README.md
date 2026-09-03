@@ -113,6 +113,7 @@ content style rules every module follows once written.
 | [`15-error-handling-retries`](15-error-handling-retries/) | ✅ Written |
 | [`16-caching`](16-caching/) | ✅ Written |
 | [`17-queues-background-tasks`](17-queues-background-tasks/) | ✅ Written |
+| [`18-serialization`](18-serialization/) | ✅ Written |
 | everything else | 🚧 Planned |
 
 Check each folder's `README.md` for its current status and planned subtopics.
