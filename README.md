@@ -171,6 +171,7 @@ Cross-curriculum references that sit alongside the numbered modules:
 - [`ROADMAP.md`](ROADMAP.md) — phased learning path with checkpoints
 - [`CHEATSHEET.md`](CHEATSHEET.md) — every module's cheat sheet in one scannable page
 - [`INTERVIEW.md`](INTERVIEW.md) — every module's interview questions in one bank
+- [`PATTERNS.md`](PATTERNS.md) — reusable patterns gathered by theme, across modules and projects
 
 ## Contributing / extending
 

@@ -44,7 +44,7 @@ advanced-python-for-ai-engineers/
 ├── ROADMAP.md                phased learning roadmap
 ├── CHEATSHEET.md             master cheat sheet index
 ├── INTERVIEW.md              interview question bank
-├── PATTERNS.md               (planned) reusable pattern library
+├── PATTERNS.md               reusable pattern library
 ├── GLOSSARY.md                (planned) term glossary
 ├── PYTHON_TO_AI_ENGINEERING.md (planned) concept -> application map
 │
