@@ -164,6 +164,13 @@ See [`ROADMAP.md`](ROADMAP.md) for a phased, paced path through the curriculum (
 checkpoints and an alternative order for readers who already know foundational Python), and
 [`AGENTS.md`](AGENTS.md) for how content gets added.
 
+## Reference docs
+
+Cross-curriculum references that sit alongside the numbered modules:
+
+- [`ROADMAP.md`](ROADMAP.md) — phased learning path with checkpoints
+- [`CHEATSHEET.md`](CHEATSHEET.md) — every module's cheat sheet in one scannable page
+
 ## Contributing / extending
 
 This repo is built module-by-module. If you're adding content (human or AI agent), read

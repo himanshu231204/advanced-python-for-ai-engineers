@@ -42,7 +42,7 @@ advanced-python-for-ai-engineers/
 ├── AGENTS.md                 This file — content rules for any agent
 ├── CLAUDE.md                 Claude Code–specific operating notes
 ├── ROADMAP.md                phased learning roadmap
-├── CHEATSHEET.md             (planned) master cheat sheet index
+├── CHEATSHEET.md             master cheat sheet index
 ├── INTERVIEW.md              (planned) interview question bank
 ├── PATTERNS.md               (planned) reusable pattern library
 ├── GLOSSARY.md                (planned) term glossary
