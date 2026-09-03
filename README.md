@@ -112,6 +112,7 @@ content style rules every module follows once written.
 | [`14-streaming-sse-websockets`](14-streaming-sse-websockets/) | ✅ Written |
 | [`15-error-handling-retries`](15-error-handling-retries/) | ✅ Written |
 | [`16-caching`](16-caching/) | ✅ Written |
+| [`17-queues-background-tasks`](17-queues-background-tasks/) | ✅ Written |
 | everything else | 🚧 Planned |
 
 Check each folder's `README.md` for its current status and planned subtopics.
