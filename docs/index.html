@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advanced Python for AI Engineers</title>
+  <meta name="description" content="A personal study OS for Advanced/Modern Python, built for AI Engineers — modules, patterns, interview prep, and projects." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐍</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/vendor/atom-one-dark.min.css" />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <!-- Top header -->
+  <header class="topbar">
+    <button id="menuToggle" class="icon-btn only-mobile" aria-label="Toggle navigation">
+      <svg viewBox="0 0 24 24" class="icon"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <a class="brand" href="#/home">
+      <span class="brand-mark">🐍</span>
+      <span class="brand-text">
+        <strong>Advanced Python</strong>
+        <em>for AI Engineers</em>
+      </span>
+    </a>
+
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24" class="icon search-icon"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="search" type="search" placeholder="Search the handbook…  (press /)" autocomplete="off" spellcheck="false" />
+      <kbd class="search-kbd">/</kbd>
+      <div id="searchResults" class="search-results" hidden></div>
+    </div>
+
+    <div class="topbar-actions">
+      <a id="repoLink" class="icon-btn" href="#" target="_blank" rel="noopener" aria-label="GitHub repository" title="View on GitHub">
+        <svg viewBox="0 0 24 24" class="icon" fill="currentColor" stroke="none"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.9 18.3 5.2 18.3 5.2c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+      </a>
+      <button id="themeToggle" class="icon-btn" aria-label="Toggle theme" title="Toggle theme">
+        <svg class="icon icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="icon icon-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar" aria-label="Primary navigation">
+      <nav id="nav" class="nav"></nav>
+      <div class="sidebar-progress">
+        <div class="sp-label"><span>Modules written</span><span id="spCount">—</span></div>
+        <div class="sp-bar"><div id="spFill" class="sp-fill"></div></div>
+      </div>
+    </aside>
+    <div id="backdrop" class="backdrop" hidden></div>
+
+    <!-- Main -->
+    <main class="main">
+      <div id="crumbs" class="crumbs" aria-label="Breadcrumb"></div>
+      <article id="content" class="content">
+        <div class="loading">Loading the handbook…</div>
+      </article>
+      <div id="pager" class="pager"></div>
+      <footer class="site-footer">
+        <div class="foot-col">
+          <strong id="footTitle">Advanced Python for AI Engineers</strong>
+          <p>A personal engineering handbook &amp; study OS — a presentation layer generated directly from the repository.</p>
+        </div>
+        <div class="foot-col">
+          <span class="foot-head">Repository</span>
+          <a id="footRepo" href="#" target="_blank" rel="noopener">GitHub ↗</a>
+          <span id="footProgress" class="foot-progress"></span>
+        </div>
+        <div class="foot-col">
+          <span class="foot-head">Reference</span>
+          <a href="#/cheatsheet">Cheatsheet</a>
+          <a href="#/interview">Interview</a>
+          <a href="#/patterns">Patterns</a>
+          <a href="#/glossary">Glossary</a>
+        </div>
+      </footer>
+    </main>
+
+    <!-- Table of contents -->
+    <aside id="toc" class="toc" aria-label="On this page"></aside>
+  </div>
+
+  <script src="assets/vendor/marked.min.js"></script>
+  <script src="assets/vendor/highlight.min.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
