@@ -79,6 +79,7 @@ any level. `projects/` are meant to be attempted after their listed prerequisite
 advanced-python-for-ai-engineers/
 ├── README.md, AGENTS.md, CLAUDE.md   ← you are here / agent & content rules
 ├── 00-python-foundation-review/  … 28-ai-engineering-patterns/   ← the curriculum
+├── python-builtins-for-ai-engineers/  stdlib quick-reference for AI engineers
 ├── code-reading/                  predict-the-output exercises
 ├── debugging/                     intentionally broken code + fixes
 └── projects/                      6 mini projects combining modules
@@ -174,6 +175,7 @@ Cross-curriculum references that sit alongside the numbered modules:
 - [`PATTERNS.md`](PATTERNS.md) — reusable patterns gathered by theme, across modules and projects
 - [`GLOSSARY.md`](GLOSSARY.md) — alphabetical glossary of terms used throughout the curriculum
 - [`PYTHON_TO_AI_ENGINEERING.md`](PYTHON_TO_AI_ENGINEERING.md) — organized by AI-engineering task instead of by module
+- [`python-builtins-for-ai-engineers/`](python-builtins-for-ai-engineers/) — Python stdlib quick-reference: 17 categories of builtins with AI-engineering use cases
 
 ## Contributing / extending
 
