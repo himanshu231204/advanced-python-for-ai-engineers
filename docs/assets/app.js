@@ -30,6 +30,7 @@
     puzzle: '<path d="M4 7h4a2 2 0 1 1 4 0h4v4a2 2 0 1 1 0 4v4h-4a2 2 0 1 0-4 0H4v-4a2 2 0 1 0 0-4z"/>',
     book: '<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/>',
     cpu: '<rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/>',
+    library: '<path d="M16 6l3 14V8a2 2 0 0 0-2-2h-1"/><path d="M12 6H8a2 2 0 0 0-2 2v12l5-3 5 3V8a2 2 0 0 0-2-2z"/>',
     chev: '<path d="M9 6l6 6-6 6"/>',
   };
   const svg = (name, cls = "nav-ico") => `<svg viewBox="0 0 24 24" class="icon ${cls}">${ICONS[name] || ""}</svg>`;

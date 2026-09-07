@@ -12,6 +12,8 @@ This is not a generic Python course. Every topic exists to answer one question:
 > are in place; module content is being written incrementally. Each module's `README.md`
 > shows its own status (`🚧 Planned` or `✅ Written`) — see [Progress](#progress) below.
 
+> **Study site:** [himanshu231204.github.io/advanced-python-for-ai-engineers](https://himanshu231204.github.io/advanced-python-for-ai-engineers/) — a searchable, dark-themed web version of this curriculum, auto-deployed from `docs/`.
+
 ---
 
 ## Who this is for
@@ -82,7 +84,8 @@ advanced-python-for-ai-engineers/
 ├── python-builtins-for-ai-engineers/  stdlib quick-reference for AI engineers
 ├── code-reading/                  predict-the-output exercises
 ├── debugging/                     intentionally broken code + fixes
-└── projects/                      6 mini projects combining modules
+├── projects/                      6 mini projects combining modules
+└── docs/                          GitHub Pages study site (auto-deployed)
 ```
 
 See [`AGENTS.md`](AGENTS.md) for the full structure, the mandatory topic template, and the
@@ -125,6 +128,10 @@ content style rules every module follows once written.
 | [`26-contextvars`](26-contextvars/) | ✅ Written |
 | [`27-production-python-patterns`](27-production-python-patterns/) | ✅ Written |
 | [`28-ai-engineering-patterns`](28-ai-engineering-patterns/) | ✅ Written |
+| | |
+| **Supplementary sections** | |
+| [`python-builtins-for-ai-engineers/`](python-builtins-for-ai-engineers/) — stdlib quick-reference (17 categories, 60+ modules) | ✅ Written |
+| [`docs/`](docs/) — GitHub Pages study site | ✅ Written |
 | everything else | 🚧 Planned |
 
 Check each folder's `README.md` for its current status and planned subtopics.
