@@ -247,6 +247,24 @@ def main() -> None:
         nav.append({"id": "builtins", "title": "Python Builtins", "icon": "library",
                     "type": "group", "children": children})
 
+    # ---- Python Keywords for AI Engineers ----
+    keywords_dir = ROOT / "python-keywords-for-ai-engineers"
+    if keywords_dir.exists():
+        children = []
+        overview = keywords_dir / "README.md"
+        if overview.exists():
+            add_doc("keywords", title=first_h1(read(overview), "Python Keywords for AI Engineers"),
+                    markdown=read(overview), source=rel(overview), kind="reference")
+            children.append({"id": "keywords", "title": "Overview", "type": "doc"})
+        for md_file in sorted(keywords_dir.glob("[0-9][0-9]-*.md")):
+            md = read(md_file)
+            doc_id = f"keywords/{md_file.stem}"
+            add_doc(doc_id, title=first_h1(md, md_file.stem), markdown=md,
+                    source=rel(md_file), kind="reference")
+            children.append({"id": doc_id, "title": first_h1(md, md_file.stem), "type": "doc"})
+        nav.append({"id": "keywords", "title": "Python Keywords", "icon": "key",
+                    "type": "group", "children": children})
+
     # ---- Single-file reference docs ----
     references = [
         ("cheatsheet", "CHEATSHEET.md", "Cheatsheet", "list"),

@@ -82,6 +82,7 @@ advanced-python-for-ai-engineers/
 ├── README.md, AGENTS.md, CLAUDE.md   ← you are here / agent & content rules
 ├── 00-python-foundation-review/  … 28-ai-engineering-patterns/   ← the curriculum
 ├── python-builtins-for-ai-engineers/  stdlib quick-reference for AI engineers
+├── python-keywords-for-ai-engineers/ keyword reference for AI engineers
 ├── code-reading/                  predict-the-output exercises
 ├── debugging/                     intentionally broken code + fixes
 ├── projects/                      6 mini projects combining modules
@@ -131,6 +132,7 @@ content style rules every module follows once written.
 | | |
 | **Supplementary sections** | |
 | [`python-builtins-for-ai-engineers/`](python-builtins-for-ai-engineers/) — stdlib quick-reference (17 categories, 60+ modules) | ✅ Written |
+| [`python-keywords-for-ai-engineers/`](python-keywords-for-ai-engineers/) — keyword reference (8 categories, 35 keywords) | ✅ Written |
 | [`docs/`](docs/) — GitHub Pages study site | ✅ Written |
 | everything else | 🚧 Planned |
 
@@ -183,6 +185,7 @@ Cross-curriculum references that sit alongside the numbered modules:
 - [`GLOSSARY.md`](GLOSSARY.md) — alphabetical glossary of terms used throughout the curriculum
 - [`PYTHON_TO_AI_ENGINEERING.md`](PYTHON_TO_AI_ENGINEERING.md) — organized by AI-engineering task instead of by module
 - [`python-builtins-for-ai-engineers/`](python-builtins-for-ai-engineers/) — Python stdlib quick-reference: 17 categories of builtins with AI-engineering use cases
+- [`python-keywords-for-ai-engineers/`](python-keywords-for-ai-engineers/) — Python keyword reference: 8 categories covering all 35 keywords with AI-engineering use cases
 
 ## Contributing / extending
 

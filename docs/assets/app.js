@@ -31,6 +31,7 @@
     book: '<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/>',
     cpu: '<rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/>',
     library: '<path d="M16 6l3 14V8a2 2 0 0 0-2-2h-1"/><path d="M12 6H8a2 2 0 0 0-2 2v12l5-3 5 3V8a2 2 0 0 0-2-2z"/>',
+    key: '<path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.78 7.78 5.5 5.5 0 0 1 7.78-7.78zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/>',
     chev: '<path d="M9 6l6 6-6 6"/>',
   };
   const svg = (name, cls = "nav-ico") => `<svg viewBox="0 0 24 24" class="icon ${cls}">${ICONS[name] || ""}</svg>`;
