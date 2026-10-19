@@ -71,8 +71,8 @@ The repo is organized into four levels, roughly in build order:
 | **Level 3** — AI-System Python | concurrency, HTTPX, streaming, retries, caching, queues, logging, production/AI patterns | `12`–`17`, `20`, `27`, `28` |
 | **Level 4** — Deep Python | advanced OOP/magic methods, performance & memory, GIL/processes/threads, contextvars | `10`, `24`–`26` |
 
-Work top to bottom through the numbered folders (`00-...` → `28-...`); each module lists
-prerequisites in its own `README.md`. `code-reading/` and `debugging/` can be done alongside
+Work top to bottom through the numbered folders (`00-...` → `28-...`); see [ROADMAP.md](ROADMAP.md)
+for the learning order. `code-reading/` and `debugging/` can be done alongside
 any level. `projects/` are meant to be attempted after their listed prerequisite modules.
 
 ## Repository structure
@@ -160,7 +160,7 @@ python3 --version   # confirm 3.12+
 Once a module contains runnable code, run it directly:
 
 ```bash
-python3 01-functions/example.py
+python3 01-functions/examples/tool_dispatcher.py
 ```
 
 If a project folder has its own `pyproject.toml` (added as projects are built), use `uv run`
