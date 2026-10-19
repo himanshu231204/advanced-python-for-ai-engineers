@@ -101,6 +101,7 @@ content style rules every module follows once written.
 
 | Module | Status |
 |---|---|
+| [`00-python-foundation-review`](00-python-foundation-review/) | 🚧 Partial — core data structures written; other refreshers planned |
 | [`01-functions`](01-functions/) | ✅ Written |
 | [`02-iterators-generators`](02-iterators-generators/) | ✅ Written |
 | [`03-asyncio`](03-asyncio/) | ✅ Written |
@@ -134,7 +135,10 @@ content style rules every module follows once written.
 | [`python-builtins-for-ai-engineers/`](python-builtins-for-ai-engineers/) — stdlib quick-reference (17 categories, 60+ modules) | ✅ Written |
 | [`python-keywords-for-ai-engineers/`](python-keywords-for-ai-engineers/) — keyword reference (8 categories, 35 keywords) | ✅ Written |
 | [`docs/`](docs/) — GitHub Pages study site | ✅ Written |
-| everything else | 🚧 Planned |
+| [`code-reading/`](code-reading/) — 6 exercises | ✅ Written |
+| [`debugging/`](debugging/) — 6 exercises | ✅ Written |
+| [`projects/`](projects/) — all 6 mini projects | ✅ Written |
+| Root reference docs — roadmap, cheat sheet, interviews, patterns, glossary, concept map | Written |
 
 Check each folder's `README.md` for its current status and planned subtopics.
 

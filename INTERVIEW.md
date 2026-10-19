@@ -4,7 +4,9 @@ Every "🎤 Interview Questions" section from every written module, in one page 
 pre-interview review, organized in the same order as the curriculum. Each entry links back
 to its full module for the underlying explanation and runnable examples.
 
-`00-python-foundation-review` is still a stub (not yet written) and has no entry here yet.
+`00-python-foundation-review` is partially written: see its
+[core data structures interview questions](00-python-foundation-review/README.md#13--interview-questions).
+The remaining foundation refreshers are planned.
 
 ## Index
 

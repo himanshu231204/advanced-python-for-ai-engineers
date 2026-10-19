@@ -4,7 +4,9 @@ The condensed "Cheat Sheet" section from every written module, in one scannable 
 useful as a quick reference or a pre-interview skim. Each entry links back to its full
 module for the complete explanation, examples, and interview questions.
 
-`00-python-foundation-review` is still a stub (not yet written) and has no entry here yet.
+`00-python-foundation-review` is partially written: see its
+[core data structures cheat sheet](00-python-foundation-review/README.md#16-cheat-sheet).
+The remaining foundation refreshers are planned.
 
 ## Index
 
