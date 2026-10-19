@@ -335,6 +335,31 @@ print(top_result([]))  # None
 
 </details>
 
+### Static checker practice: a tool caller with the wrong input
+
+From the repository root, run this isolated checker (no project dependency install):
+
+```bash
+uvx --from mypy mypy 07-type-hints/examples/typecheck_contract_bad.py
+```
+
+Expected: exit **1**, one `typeddict-item` diagnostic: expression has type `str`,
+while `ToolCall.top_k` requires `int`. The bad caller is intentionally incorrect;
+exclude it from blanket claims that every example type-checks.
+
+Compare the shared contract's correct caller, using integer `3`:
+
+```bash
+uvx --from mypy mypy 07-type-hints/examples/typecheck_contract.py
+python 07-type-hints/examples/typecheck_contract.py
+```
+
+Expected: checker exit **0**, `Success: no issues found in 1 source file`;
+runtime prints `retrieve: async Python (top_k=3)`. Both callers import/use the
+same dispatch implementation. Type hints do not validate runtime input: even the
+bad caller can run. Validate untrusted tool arguments at the boundary with
+[Pydantic](../09-pydantic/README.md).
+
 ## 15. Real-World Challenge
 
 Extend [`examples/typed_tool_interface.py`](examples/typed_tool_interface.py) so `ToolCall`
