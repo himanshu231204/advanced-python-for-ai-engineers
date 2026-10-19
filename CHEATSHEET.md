@@ -4,11 +4,9 @@ The condensed "Cheat Sheet" section from every written module, in one scannable 
 useful as a quick reference or a pre-interview skim. Each entry links back to its full
 module for the complete explanation, examples, and interview questions.
 
-`00-python-foundation-review` is partially written: see its
-[core data structures cheat sheet](00-python-foundation-review/README.md#16-cheat-sheet).
-The remaining foundation refreshers are planned.
-
 ## Index
+
+- [00 — Python Foundation Review](#00--python-foundation-review)
 
 - [01 — Functions](#01--functions)
 - [02 — Iterators & Generators](#02--iterators--generators)
@@ -41,7 +39,17 @@ The remaining foundation refreshers are planned.
 
 ---
 
-### 01 — Functions
+### 00 — Python Foundation Review
+
+| Topic | Quick recall |
+|---|---|
+| [Containers](00-python-foundation-review/README.md) | Lists retain order/repeats; tuples fix positions; sets deduplicate hashable values; dicts map keys. Copies are shallow. |
+| [Comprehensions](00-python-foundation-review/control-flow-comprehensions.md) | Filter/map simply; dict duplicate keys keep the last value; use a loop for side effects and a generator for lazy iteration. |
+| [Scope](00-python-foundation-review/functions-scope.md) | LEGB resolves names; assignment binds locally; mutation changes the referenced object; use a fresh default per request. |
+| [Exceptions](00-python-foundation-review/exception-basics.md) | Catch narrowly; `else` follows success; `finally` cleans up; `raise ... from ...` preserves the cause. |
+| [Imports](00-python-foundation-review/modules-imports.md) | Use package imports and `python -m`; guard executable entrypoints; avoid stdlib-shadowing filenames. |
+
+## 01 — Functions
 
 [Full module →](01-functions/)
 

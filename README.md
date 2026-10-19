@@ -8,9 +8,8 @@ This is not a generic Python course. Every topic exists to answer one question:
 > **Why does an AI Engineer need this Python concept, how does it work internally, how do I
 > use it in an AI system, and when should I NOT use it?**
 
-> 🚧 **Status: under active construction.** The full folder structure and curriculum outline
-> are in place; module content is being written incrementally. Each module's `README.md`
-> shows its own status (`🚧 Planned` or `✅ Written`) — see [Progress](#progress) below.
+> ✅ **Status: all 29 numbered modules are written**, including the foundation refresher
+> and its four linked topics. The six projects and supplementary references are also written.
 
 > **Study site:** [himanshu231204.github.io/advanced-python-for-ai-engineers](https://himanshu231204.github.io/advanced-python-for-ai-engineers/) — a searchable, dark-themed web version of this curriculum, auto-deployed from `docs/`.
 
@@ -96,12 +95,11 @@ content style rules every module follows once written.
 
 | Status | Meaning |
 |---|---|
-| 🚧 Planned | Folder + scope exist; full lesson not yet written |
 | ✅ Written | Follows the full topic template with runnable code |
 
 | Module | Status |
 |---|---|
-| [`00-python-foundation-review`](00-python-foundation-review/) | 🚧 Partial — core data structures written; other refreshers planned |
+| [`00-python-foundation-review`](00-python-foundation-review/) | ✅ Written |
 | [`01-functions`](01-functions/) | ✅ Written |
 | [`02-iterators-generators`](02-iterators-generators/) | ✅ Written |
 | [`03-asyncio`](03-asyncio/) | ✅ Written |
@@ -136,17 +134,17 @@ content style rules every module follows once written.
 | [`python-keywords-for-ai-engineers/`](python-keywords-for-ai-engineers/) — keyword reference (8 categories, 35 keywords) | ✅ Written |
 | [`docs/`](docs/) — GitHub Pages study site | ✅ Written |
 | [`code-reading/`](code-reading/) — 6 exercises | ✅ Written |
-| [`debugging/`](debugging/) — 6 exercises | ✅ Written |
+| [`debugging/`](debugging/) — 7 exercises | ✅ Written |
 | [`projects/`](projects/) — all 6 mini projects | ✅ Written |
 | Root reference docs — roadmap, cheat sheet, interviews, patterns, glossary, concept map | Written |
 
-Check each folder's `README.md` for its current status and planned subtopics.
+Check each folder's `README.md` for prerequisites, examples, and local run commands.
 
 ## Setup
 
 - **Python version:** 3.12+
-- No repo-wide dependencies yet — each module/project is self-contained and will list its
-  own requirements as it's written (a small `requirements.txt` or PEP 723 script header
+- No repo-wide dependency environment — each module/project is self-contained and lists its
+  own requirements (a small `requirements.txt` or PEP 723 script header
   inside that folder).
 
 ```bash
@@ -157,20 +155,37 @@ python3 --version   # confirm 3.12+
 
 ## How to run examples
 
-Once a module contains runnable code, run it directly:
+Run standalone examples directly:
 
 ```bash
 python3 01-functions/examples/tool_dispatcher.py
 ```
 
-If a project folder has its own `pyproject.toml` (added as projects are built), use `uv run`
+If a project folder has its own `pyproject.toml`, use `uv run`
 from inside that folder instead — see that project's `README.md`.
 
 ## How to run tests
 
-Testing conventions live in [`19-testing-pytest/`](19-testing-pytest/). Most module examples
-are self-checking (they print expected output) rather than backed by a test suite; project
-05 has a real `pytest` suite — see [`projects/05-production-ai-service`](projects/05-production-ai-service/).
+Testing conventions live in [module 19](19-testing-pytest/README.md). Run pytest suites
+separately from their module/project directories; their flat imports are intentionally
+independent. After installing each folder's documented requirements:
+
+```bash
+cd 19-testing-pytest
+python3 -m pytest examples -q
+# In a separate shell from the repository root:
+cd projects/05-production-ai-service
+python3 -m pytest tests -q
+```
+
+The [packaging demo](23-packaging-modern-python/examples/demo_project/README.md) documents
+its exact `uv` commands. Site checks run from the repository root:
+
+```bash
+python3 -m unittest discover -s tests -p "test_*.py"
+node --test tests/test_repo_links.js
+python3 build_site.py
+```
 
 ## Roadmap
 

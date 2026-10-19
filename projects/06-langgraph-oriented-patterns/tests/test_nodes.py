@@ -34,11 +34,11 @@ def test_node_rejects_corrupted_query(node: Node) -> None:
     state = AgentState.model_construct(
         query=123, tool_calls=[ToolCall(tool="search", args="contextvars", result="found")]
     )
-    with pytest.raises(ValidationError, match="query"):
+    with pytest.warns(UserWarning, match="Pydantic serializer warnings"), pytest.raises(ValidationError, match="query"):
         asyncio.run(node(state))
 
 
 def test_tool_node_revalidates_unchanged_fields() -> None:
     state = AgentState.model_construct(query="contextvars", final_answer=123)
-    with pytest.raises(ValidationError, match="final_answer"):
+    with pytest.warns(UserWarning, match="Pydantic serializer warnings"), pytest.raises(ValidationError, match="final_answer"):
         asyncio.run(tool_node(state))

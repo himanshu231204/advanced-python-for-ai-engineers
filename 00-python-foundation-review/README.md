@@ -1,18 +1,18 @@
 # 00 — Python Foundation Review
 
-**Level:** Foundation | **Status:** 🚧 Planned (partially written: core data structures complete)
+**Level:** Foundation | **Status:** ✅ Written
 
-A fast refresher before the advanced modules. The core-data-structures lesson below is
-written; the other foundation topics remain planned. This is not a Python-from-scratch course.
+A fast prerequisite refresher before the advanced modules. Read the core-container lesson
+below, then the four focused topics; this is not a Python-from-scratch course.
 
-## What this module will cover
+## Foundation topics
 
-- ✅ Core data structures: list / tuple / set / dict — lesson below.
-- Iterators and generators — see the full [module 02](../02-iterators-generators/README.md).
-- Planned: control flow and comprehensions.
-- Planned: scope refresher; functions already have a full [module 01](../01-functions/README.md).
-- Planned: modules and imports walkthrough; packaging is in [module 23](../23-packaging-modern-python/README.md).
-- Planned: exception basics; advanced handling is in [module 15](../15-error-handling-retries/README.md).
+- [Core data structures: list / tuple / set / dict](#core-data-structures--must-know) — lesson below.
+- [Control flow and comprehensions](control-flow-comprehensions.md).
+- [Functions, scope, and references](functions-scope.md); continue with [module 01](../01-functions/README.md).
+- [Exception basics](exception-basics.md); continue with [context managers](../05-context-managers/README.md) and [advanced handling](../15-error-handling-retries/README.md).
+- [Modules and imports](modules-imports.md); continue with [packaging and uv](../23-packaging-modern-python/README.md).
+- [Iterators and generators](../02-iterators-generators/README.md) — the full follow-on lesson.
 
 ## Core Data Structures — MUST KNOW
 
