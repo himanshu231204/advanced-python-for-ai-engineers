@@ -44,16 +44,20 @@ for (node_name, node) in nodes:
 `state.py` defines `AgentState`, a plain Pydantic model passed between every node -- no
 node knows about any other node's internals, only the shared state shape. `nodes.py` has
 three async nodes (`plan_node`, `tool_node`, `respond_node`), each taking an `AgentState`
-and returning a new one via `state.model_copy(update=...)`; `tool_node` dispatches through a
+and returning a new one via `AgentState.model_validate({...state.model_dump(), ...updates})`;
+`tool_node` dispatches through a
 typed `TOOL_REGISTRY: dict[str, Tool]`, the same tool-calling shape from
 `28-ai-engineering-patterns`. `graph.py`'s `run_graph` is an async generator that yields the
 state after every node completes.
 
 ## Run it
 
+From `projects/06-langgraph-oriented-patterns/`:
+
 ```bash
 pip install -r requirements.txt
 python3 graph.py
+python3 -m pytest tests -q
 ```
 
 Expected output:
@@ -71,6 +75,10 @@ final answer: Based on 3 result(s) for 'what is contextvars used for?', here's m
 
 (Exact elapsed timings will vary slightly run to run.)
 
+Run these tests in this project directory in a separate pytest invocation: the examples
+use flat imports such as `from state import AgentState`, as do other project folders.
+The tests use `asyncio.run`; no async pytest plugin is needed.
+
 ## What this demonstrates
 
 - Nodes as plain async functions over one shared, typed state object -- no framework
@@ -79,8 +87,9 @@ final answer: Based on 3 result(s) for 'what is contextvars used for?', here's m
   progress after each step rather than waiting for the whole graph to finish
 - A retry-and-observability wrapper applied uniformly around every node, independent of
   what each node actually does
-- `state.model_copy(update=...)` producing a new, validated state object per node instead of
-  mutating shared state in place
+- `AgentState.model_validate` validating the merged field dictionary and producing a new
+  state per node without mutating the input. `model_copy(update=...)` bypasses validation,
+  so it is appropriate only for trusted updates and does not provide this guarantee.
 
 ---
 

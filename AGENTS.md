@@ -27,11 +27,10 @@ Never write a topic as generic, textbook-style Python content with no AI-enginee
 
 ## 2. Current status
 
-This repository is being built incrementally. The full directory structure exists; module
-folders currently contain a `README.md` **stub** (scope + planned subtopics) rather than
-finished lessons. A module is "done" only once its `README.md` follows the full
-[topic template](#4-the-topic-template) with runnable code — not before. Don't assume a
-module is finished just because the folder exists; check its status line.
+All 29 numbered modules (00–28) are written, including the four linked foundation
+refreshers in module 00. Extensions still proceed one topic at a time. A topic is "done"
+only once it follows the full [topic template](#4-the-topic-template) with runnable code;
+check its content and status rather than inferring completion from a folder's existence.
 
 ## 3. Repository structure
 

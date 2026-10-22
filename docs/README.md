@@ -52,3 +52,24 @@ Two supported options:
 
 The site will be available at
 `https://himanshu231204.github.io/advanced-python-for-ai-engineers/`.
+
+## Child lessons and repository links
+
+Direct Markdown lessons inside numbered modules appear immediately after their
+parent in navigation and search. They do not increase the 29-module metric.
+The builder prunes hidden directories, environments, caches, build output and
+scratch folders before collecting example files.
+
+Repository links resolve relative to the current lesson source, including
+README/directory links and heading fragments. Unsupported source files open
+on GitHub. Shared heading URLs survive reload; GitHub heading aliases with
+repeated hyphens resolve to the corresponding site heading.
+
+Run the dependency-free regressions with:
+
+```bash
+python -m unittest discover -s tests -p test_build_site.py
+node --test tests/test_repo_links.js
+node --check docs/assets/app.js
+node --check docs/assets/repo-links.js
+```

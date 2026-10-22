@@ -17,7 +17,9 @@ Then commit docs/content.json alongside your content edits.
 from __future__ import annotations
 
 import json
+import os
 import re
+from collections.abc import Iterator
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -42,7 +44,7 @@ LEVEL_RE = re.compile(r"\*\*Level:\*\*\s*([^\|\n]+)")
 
 
 def read(path: Path) -> str:
-    return path.read_text(encoding="utf-8")
+    return path.read_text(encoding="utf-8-sig")
 
 
 def first_h1(md: str, fallback: str) -> str:
@@ -68,13 +70,26 @@ def parse_level(md: str) -> str:
     return m.group(1).strip() if m else ""
 
 
-def collect_code(folder: Path) -> list[dict]:
+def source_files(folder: Path) -> Iterator[Path]:
+    """Prune generated environments before walking; never bundle local artifacts."""
+    excluded = {"__pycache__", "node_modules", "venv", "env", "build", "dist", "scratch"}
+    for base, directories, names in os.walk(folder, followlinks=False):
+        directories[:] = sorted(name for name in directories
+                                if not name.startswith(".") and name not in excluded
+                                and not (Path(base) / name).is_symlink())
+        for name in sorted(names):
+            path = Path(base) / name
+            if not name.startswith(".") and not path.is_symlink():
+                yield path
+
+
+def collect_code(folder: Path, *, skip_topics: bool = False) -> list[dict]:
     """Embed small source files found under a module/project folder."""
     files: list[dict] = []
-    for p in sorted(folder.rglob("*")):
+    for p in sorted(source_files(folder)):
         if not p.is_file():
             continue
-        if p.name == "README.md":
+        if p.name == "README.md" or (skip_topics and p.parent == folder and p.suffix.lower() == ".md"):
             continue
         ext = p.suffix.lower()
         if ext not in LANG_BY_EXT:
@@ -142,7 +157,7 @@ def main() -> None:
             number=num,
             folder=d.name,
             source=rel(readme),
-            code=collect_code(d),
+            code=collect_code(d, skip_topics=True),
             kind="module",
         )
         module_children.append(
@@ -155,6 +170,17 @@ def main() -> None:
                 "type": "doc",
             }
         )
+        for topic in sorted(d.glob("*.md")):
+            if topic.name == "README.md" or topic.name.startswith("."):
+                continue
+            topic_md = read(topic)
+            topic_id = f"{doc_id}/{topic.stem}"
+            topic_title = first_h1(topic_md, topic.stem)
+            add_doc(topic_id, title=topic_title, markdown=topic_md,
+                    source=rel(topic), kind="topic", parent=doc_id,
+                    status=parse_status(topic_md), level=level)
+            module_children.append({"id": topic_id, "title": topic_title,
+                                    "type": "doc", "parent": doc_id})
     # prev/next links across modules
     for i, doc_id in enumerate(module_order):
         docs[doc_id]["prev"] = module_order[i - 1] if i > 0 else None

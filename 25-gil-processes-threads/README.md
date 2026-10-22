@@ -135,19 +135,22 @@ Full runnable version, with measured timings: [`examples/parallel_batch_embeddin
 ## 9. WHEN TO USE / WHEN NOT TO
 
 ```text
-asyncio
-✅ Use for I/O-bound operations
-❌ Don't expect it to speed up CPU-heavy Python code
-→ Use multiprocessing for suitable CPU-bound workloads
+WHEN TO USE
+✅ Good for:
+- asyncio: I/O-bound operations with async APIs
+- Threading: I/O-bound work, especially blocking libraries with no async API
+- Multiprocessing: genuinely CPU-bound work needing real parallelism
 
-THREADING
-✅ Use for I/O-bound work, especially blocking libraries with no async API
-❌ Don't expect it to speed up CPU-bound Python code -- the GIL blocks that
+WHEN NOT TO USE
+❌ Avoid when:
+- Expecting asyncio to speed up CPU-heavy Python code
+- Expecting threads to speed up CPU-bound Python code under the GIL
+- Using separate processes for I/O-bound work where startup and communication
+  overhead outweigh the benefit
 
-MULTIPROCESSING
-✅ Use for genuinely CPU-bound work needing real parallelism
-❌ Avoid for I/O-bound work -- the overhead of separate processes (startup,
-   inter-process communication) isn't worth it when threads/asyncio would do
+BETTER ALTERNATIVE
+Use multiprocessing instead when CPU-bound Python work needs parallelism.
+Use threads or asyncio instead when the workload mostly waits for I/O.
 ```
 
 ## 10. 🚨 Common Mistakes

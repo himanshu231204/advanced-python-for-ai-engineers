@@ -30,6 +30,7 @@ README.md   -> Symptom -> Root Cause -> Fix -> Takeaway
 | 4 | [Decorator Silently Drops the Return Value](exercises/04-decorator-drops-return-value/) | Broken decorators |
 | 5 | [Pydantic Model With No Real Validation](exercises/05-pydantic-mutable-default/) | Broken Pydantic models |
 | 6 | [Retrying a Non-Retryable Error](exercises/06-retrying-non-retryable-error/) | Broken retry logic |
+| 7 | [Traceback to Breakpoint](exercises/07-traceback-to-breakpoint/) | Retrieval boundary normalization |
 
 ---
 

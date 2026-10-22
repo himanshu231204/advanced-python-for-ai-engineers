@@ -15,8 +15,8 @@ This file only adds Claude Code–specific operating notes on top of it.
   is no single build/run/deploy target — each module and project is self-contained.
 - Numbered folders (`00-...` through `28-...`) are learning modules in progression order.
   `code-reading/`, `debugging/`, and `projects/` are practice/application folders.
-- Every module folder currently holds a stub `README.md` (scope only). Writing a module means
-  replacing that stub with a full topic file per `AGENTS.md` §4 — not appending to it.
+- All 29 numbered modules are written. Module 00 includes four linked prerequisite topics.
+  New topics must follow the full template in `AGENTS.md` §4 and preserve existing lessons.
 
 ## Working conventions in this repo
 
@@ -32,15 +32,18 @@ This file only adds Claude Code–specific operating notes on top of it.
 
 ## Commands
 
-No package manager or test suite exists at the repo root yet (per-module/project
-`requirements.txt` or `pyproject.toml` files will be added as those are built). Until then:
+Dependencies and pytest suites belong to individual modules/projects. Run each suite
+from its documented directory to isolate flat-module imports; do not combine them in one
+root pytest invocation. Root site checks use unittest and Node's test runner:
 
 ```bash
 python3 --version        # confirm 3.12+
 python3 path/to/example.py
+python3 -m unittest discover -s tests -p "test_*.py"
+node --test tests/test_repo_links.js
 ```
 
-If a project folder gains its own `pyproject.toml`/`uv` setup, prefer `uv run` inside that
+For a project folder with its own `pyproject.toml`/`uv` setup, prefer `uv run` inside that
 folder and document the exact command in that project's `README.md`.
 
 ## Scope discipline

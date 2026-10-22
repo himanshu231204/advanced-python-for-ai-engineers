@@ -4,9 +4,9 @@ Every "🎤 Interview Questions" section from every written module, in one page 
 pre-interview review, organized in the same order as the curriculum. Each entry links back
 to its full module for the underlying explanation and runnable examples.
 
-`00-python-foundation-review` is still a stub (not yet written) and has no entry here yet.
-
 ## Index
+
+- [00 — Python Foundation Review](#00--python-foundation-review)
 
 - [01 — Functions](#01--functions)
 - [02 — Iterators & Generators](#02--iterators--generators)
@@ -39,7 +39,15 @@ to its full module for the underlying explanation and runnable examples.
 
 ---
 
-### 01 — Functions
+### 00 — Python Foundation Review
+
+- **Can a tuple contain mutable state?** Yes: its element references are fixed, but a nested list can mutate. See [containers](00-python-foundation-review/README.md).
+- **When does a comprehension become a poor choice?** When branching or side effects obscure its transformation; use a loop. See [comprehensions](00-python-foundation-review/control-flow-comprehensions.md).
+- **Why can reading a name raise `UnboundLocalError`?** Assignment anywhere in the function makes that name local unless declared otherwise. See [scope](00-python-foundation-review/functions-scope.md).
+- **Why chain exceptions?** Translate a boundary error while preserving its original cause with `raise ... from ...`. See [exceptions](00-python-foundation-review/exception-basics.md).
+- **Why prefer `python -m package` to a path into the package?** It establishes package context so relative imports resolve. See [imports](00-python-foundation-review/modules-imports.md).
+
+## 01 — Functions
 
 [Full module →](01-functions/)
 

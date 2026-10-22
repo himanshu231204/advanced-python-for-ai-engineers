@@ -25,7 +25,7 @@ TOOL_REGISTRY: dict[str, Tool] = {"search": SearchTool()}
 
 async def plan_node(state: AgentState) -> AgentState:
     """Decides what to do -- here, always "search for the query"."""
-    return state.model_copy(update={"plan": f"search for: {state.query}"})
+    return AgentState.model_validate({**state.model_dump(), "plan": f"search for: {state.query}"})
 
 
 async def tool_node(state: AgentState) -> AgentState:
@@ -34,11 +34,11 @@ async def tool_node(state: AgentState) -> AgentState:
     tool = TOOL_REGISTRY["search"]
     result = await tool.run(state.query)
     call = ToolCall(tool="search", args=state.query, result=result)
-    return state.model_copy(update={"tool_calls": [*state.tool_calls, call]})
+    return AgentState.model_validate({**state.model_dump(), "tool_calls": [*state.tool_calls, call]})
 
 
 async def respond_node(state: AgentState) -> AgentState:
     """Produces the final answer from whatever the tool node found."""
     last_call = state.tool_calls[-1]
     answer = f"Based on {last_call.result}, here's my answer to {state.query!r}."
-    return state.model_copy(update={"final_answer": answer})
+    return AgentState.model_validate({**state.model_dump(), "final_answer": answer})

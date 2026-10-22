@@ -15,8 +15,8 @@ streaming, etc.) come together into something closer to production code.
 | 05 | [Production AI Service](05-production-ai-service/) | FastAPI, config, caching, testing, logging |
 | 06 | [LangGraph-Oriented Python Patterns](06-langgraph-oriented-patterns/) | typed state, async nodes, streaming |
 
-Each project folder will contain its own `README.md` with requirements, architecture, and a
-runnable implementation once written.
+Each project folder contains its own `README.md` with requirements, architecture, and a
+runnable implementation.
 
 ---
 

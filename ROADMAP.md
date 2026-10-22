@@ -13,6 +13,20 @@ Skim [`00-python-foundation-review`](00-python-foundation-review/) first. If eve
 it is already familiar, move straight to Phase 1 — this repository does not re-teach
 basic Python (see `AGENTS.md` §10 for exactly what's out of scope).
 
+## Foundation study checklist
+
+Use this nine-item route to connect the prerequisite skills to existing deeper lessons:
+
+- [ ] Write idiomatic functions/classes with [functions](01-functions/README.md), [OOP](10-advanced-oop/README.md), and [comprehensions](00-python-foundation-review/control-flow-comprehensions.md).
+- [ ] Choose [containers](00-python-foundation-review/README.md), then [iterators/generators](02-iterators-generators/README.md) for lazy data processing.
+- [ ] Add [type hints and static checking](07-type-hints/README.md), [dataclasses](08-dataclasses/README.md), and [Pydantic](09-pydantic/README.md).
+- [ ] Trace [scope and references](00-python-foundation-review/functions-scope.md), [exceptions](00-python-foundation-review/exception-basics.md), and [resource cleanup](05-context-managers/README.md).
+- [ ] Read/write files, paths, and JSON in [serialization](18-serialization/README.md), [CSV](python-builtins-for-ai-engineers/04-data-serialization.md#csv), and [environment settings](21-config-environments/README.md).
+- [ ] Compare [sync/async execution](03-asyncio/README.md), [bounded concurrency](12-concurrency/README.md), and [concurrent HTTP calls](13-httpx-async-http/README.md).
+- [ ] Reproduce environments with [uv and packaging](23-packaging-modern-python/README.md).
+- [ ] Split scripts into [modules and packages](00-python-foundation-review/modules-imports.md), then run the linked demo with `python -m`.
+- [ ] Test with [pytest](19-testing-pytest/README.md); follow [traceback-to-breakpoint practice](debugging/exercises/07-traceback-to-breakpoint/README.md), [logging](20-logging-observability/README.md), and [pdb reference](python-builtins-for-ai-engineers/05-observability-debug.md).
+
 ## Phase 1 — Core Async & Functional Python (Level 1)
 
 The mechanics almost everything later depends on: how functions actually work, how

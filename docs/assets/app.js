@@ -135,8 +135,7 @@
 
   /* ---------- Router ---------- */
   function route() {
-    const hash = location.hash.replace(/^#\/?/, "");
-    const id = decodeURIComponent(hash) || "home";
+    const { id } = RepoLinks.parseRoute(location.hash);
     state.currentId = id;
     window.scrollTo({ top: 0 });
     if (id === "home") renderHome();
@@ -158,10 +157,14 @@
     // rewrite internal repo links to hash routes; open external in new tab
     wrap.querySelectorAll("a[href]").forEach((a) => {
       const href = a.getAttribute("href");
-      if (/^https?:\/\//i.test(href)) { a.target = "_blank"; a.rel = "noopener"; return; }
-      if (href.startsWith("#")) return;
       const mapped = mapRepoLink(href);
-      if (mapped) a.setAttribute("href", mapped);
+      if (mapped) {
+        a.setAttribute("href", mapped);
+        if (/^(https?:|mailto:|tel:|\/\/)/i.test(mapped)) {
+          a.target = "_blank";
+          a.rel = "noopener";
+        }
+      } else a.removeAttribute("href");
     });
     // headings: ids + anchors, collect for TOC
     const toc = [];
@@ -189,17 +192,7 @@
   }
 
   function mapRepoLink(href) {
-    let h = href.replace(/^\.\//, "").replace(/[?#].*$/, "");
-    h = h.replace(/\/$/, "").replace(/\/README\.md$/i, "").replace(/\.md$/i, "");
-    if (!h) return null;
-    const map = {
-      "README": "home", "ROADMAP": "roadmap", "CHEATSHEET": "cheatsheet",
-      "INTERVIEW": "interview", "PATTERNS": "patterns", "GLOSSARY": "glossary",
-      "PYTHON_TO_AI_ENGINEERING": "python-to-ai", "AGENTS": null, "CLAUDE": null,
-    };
-    if (h in map) return map[h] ? "#/" + map[h] : null;
-    if (state.docsById[h]) return "#/" + h;
-    return null;
+    return RepoLinks.resolveLink(href, state.currentId, state.docsById, state.data.meta.repo_url);
   }
 
   const copyLabel = () => `<svg viewBox="0 0 24 24" class="icon" style="width:13px;height:13px"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>Copy`;
@@ -331,7 +324,8 @@
   }
 
   function scrollToHeading(hid) {
-    const h = document.getElementById(hid);
+    const h = document.getElementById(hid) || [...document.querySelectorAll("#content [id]")]
+      .find((node) => RepoLinks.normalizeHeading(node.id) === RepoLinks.normalizeHeading(hid));
     if (h) {
       h.scrollIntoView({ behavior: "smooth", block: "start" });
       history.replaceState(null, "", `#/${state.currentId}#${hid}`);
@@ -339,8 +333,8 @@
   }
 
   function handleInPageAnchor() {
-    const m = location.hash.match(/#\/[^#]*#(.+)$/);
-    if (m) setTimeout(() => scrollToHeading(m[1]), 60);
+    const { fragment } = RepoLinks.parseRoute(location.hash);
+    if (fragment) requestAnimationFrame(() => scrollToHeading(fragment));
   }
 
   let spy;
@@ -389,7 +383,7 @@
       <p class="lede">A practical, interview-ready, production-oriented study OS for modern Python — every concept framed around building LLM apps, RAG systems, agents, and production AI services.</p>
       <div class="hero-cta">
         <a class="btn primary" href="#/roadmap">Start the roadmap</a>
-        <a class="btn ghost" href="#/${modules[0]?.folder || "01-functions"}">Jump into Module 01</a>
+        <a class="btn ghost" href="#/${modules[0]?.folder || "01-functions"}">Jump into Foundation</a>
         <a class="btn ghost" href="${m.repo_url}" target="_blank" rel="noopener">View repository ↗</a>
       </div>`;
     c.appendChild(hero);
