@@ -1,0 +1,243 @@
+module: 00-python-foundation-review
+title: "Python Basics Every AI Engineer Gets Wrong (Before You Touch LLMs)"
+hashtags: [ai, python, aiengineer]
+
+pronunciations:
+  LLM: "L L M"
+  LLMs: "L L Ms"
+  API: "A P I"
+  ID: "I D"
+  IDs: "I Ds"
+
+scenes:
+  - id: hook
+    type: title
+    chapter: "Why this matters"
+    heading: "Python Basics Every AI Engineer Gets Wrong"
+    bullets: ["Module 00 · Python Foundation Review"]
+    narration: >
+      Welcome to Bit Yodha. Most bugs in LLM applications are not about the model at all.
+      They are plain Python bugs. A list that changed when you did not expect it.
+      A default argument that remembers the last user. An exception that was swallowed,
+      so a failing API call looked like a success. In this video, we fix those foundations
+      in about seven minutes, using real, runnable code from the repository. Let's go.
+
+  - id: why
+    type: concept
+    chapter: "Why this matters"
+    heading: "Why foundations matter for AI work"
+    bullets:
+      - "Chat history is a list"
+      - "Retrieved chunks need ordering and deduplication"
+      - "Tool calls fail, and the failure must stay visible"
+      - "Services are packages, not single scripts"
+    narration: >
+      Think about what an AI application really is. Your chat history is a list.
+      Retrieved chunks have to be ordered and deduplicated. Tool calls fail, and that
+      failure has to stay visible. And a real service is a package of modules, not one script.
+      Four container types, a few scope rules, exceptions, and imports cover most of it.
+      So that is the plan for this video.
+
+  - id: ds_code
+    type: code
+    chapter: "Data structures"
+    heading: "Dedupe retrieved chunks, keep the ranking"
+    file: 00-python-foundation-review/examples/core_data_structures.py
+    lines: [4, 19]
+    run: true
+    narration: >
+      Python gives you four core containers. A list is ordered and allows repeats.
+      A tuple is fixed. A set stores unique values. A dict maps keys to values.
+      Here is how they work together in retrieval. The ranked results arrive as a list
+      of tuples, each one a document ID and a chunk index. Because a tuple of strings and
+      integers is hashable, we can put it in a set. We walk the ranking in order.
+      If we have already seen a chunk, we skip it. Otherwise, we remember it, and append its
+      text to the context list. The set gives us fast uniqueness, and the list keeps the
+      ranking. Below that, dict dot from keys gives you unique document IDs in first seen order.
+
+  - id: ds_out
+    type: output
+    chapter: "Data structures"
+    heading: "Real output from the repo"
+    file: 00-python-foundation-review/examples/core_data_structures.py
+    narration: >
+      And here is the real output from running that file. Duplicates are gone, and the order
+      of the ranking is preserved. The same file also checks that a missing key raises a key
+      error, so retrieval bugs stay visible instead of silently disappearing.
+
+  - id: cf_concept
+    type: concept
+    chapter: "Control flow and comprehensions"
+    heading: "Comprehensions: filter and transform"
+    bullets:
+      - "[x for x in items if condition] builds a list"
+      - "A dict comprehension keeps one value per key"
+      - "A generator expression can be consumed only once"
+      - "The loop variable stays inside the comprehension"
+    narration: >
+      Next, control flow and comprehensions. A list comprehension filters and transforms in
+      a single expression. Be careful when you choose the output type, though. A dict
+      comprehension keeps only one value per key, so if retrieval returns the same document
+      twice, a dict quietly drops a hit. Keep a list when ranking matters. A generator
+      expression looks similar, but it produces values lazily, and you can consume it only once.
+      And the loop variable stays inside the comprehension. It does not leak into the
+      surrounding scope.
+
+  - id: cf_code
+    type: code
+    chapter: "Control flow and comprehensions"
+    heading: "Filter hits, then stream them"
+    file: 00-python-foundation-review/examples/comprehensions.py
+    lines: [44, 53]
+    run: true
+    narration: >
+      Here is a ranked hit list with repeated document IDs. Select hits keeps every hit above
+      the threshold, in the original order, repeats included. Now look at the generator.
+      We build it, convert it to a list, and get b, b, c. Then we ask for the list again,
+      and it is empty, because the generator is already used up.
+      If you need the results twice, store them in a list.
+
+  - id: fn_code
+    type: code
+    chapter: "Functions and scope"
+    heading: "Each request owns its state"
+    file: 00-python-foundation-review/examples/scope_and_references.py
+    lines: [17, 26]
+    run: true
+    narration: >
+      Functions and scope is where conversation bugs are born. Look at record turn.
+      The history parameter defaults to none, not to an empty list. A default value is
+      created once, when the function is defined, so an empty list there would be shared by
+      every call, and one user's prompts would leak into the next request. Instead, we create
+      a fresh list for each call, copying any history we receive. Now look at mutate then
+      rebind. Appending to the list changes the caller's object. But assigning a new list to
+      the parameter only rebinds the local name. The caller never sees that.
+      Mutation is shared. Rebinding is not.
+
+  - id: fn_cmp
+    type: compare
+    chapter: "Functions and scope"
+    heading: "Mutable default arguments"
+    bullets:
+      - "Wrong | Better"
+      - "history=[] | history=None, then copy"
+      - "One list shared by every request | A fresh list for each request"
+      - "Silent data leak between users | Request state stays isolated"
+    narration: >
+      Side by side. The wrong version shares one list across every request. The better version
+      uses none as the default, and builds a new list inside the function.
+      Same idea, completely different ownership.
+
+  - id: ex_concept
+    type: concept
+    chapter: "Exceptions"
+    heading: "Catch what you expect, fail loudly on the rest"
+    bullets:
+      - "Catch the specific exception you expect"
+      - "Use raise ... from exc to keep the cause"
+      - "Never turn a failure into a plausible value"
+      - "finally is for cleanup, not for return"
+    narration: >
+      Exceptions are next. The rule is simple. Catch the specific exception you expect,
+      not everything. And when you raise a new error, use raise from, so the original cause
+      stays attached. The worst pattern is catching a broad exception and returning a
+      plausible value, like zero. Your caller can no longer tell a failure from a real zero.
+      And never return from a finally block, because it silently suppresses the exception
+      that was propagating.
+
+  - id: ex_code1
+    type: code
+    chapter: "Exceptions"
+    heading: "Preserve the cause, validate the range"
+    file: 00-python-foundation-review/examples/exception_basics.py
+    lines: [12, 19]
+    run: true
+    narration: >
+      This is a real argument parser. Converting the string can raise a value error,
+      and that is the only error we catch. We raise a clearer tool argument error from the
+      original, so debugging still shows the root cause. Then we validate the range, and reject
+      anything outside one to ten. This is the shape of validation you want for tool arguments
+      that an LLM sends you.
+
+  - id: ex_code2
+    type: code
+    chapter: "Exceptions"
+    heading: "Cleanup that always runs"
+    file: 00-python-foundation-review/examples/exception_basics.py
+    lines: [44, 51]
+    run: true
+    narration: >
+      And here is cleanup done right. The finally block closes the buffer whether processing
+      succeeds or fails, and it does nothing else. The failure still propagates.
+      The file's checks cover both paths. The buffer is closed afterwards,
+      and the original error is never swallowed.
+
+  - id: imp_concept
+    type: concept
+    chapter: "Modules and imports"
+    heading: "Modules, packages and imports"
+    bullets:
+      - "A module is a .py file; a package groups modules"
+      - "First import runs top-level code, then caches it in sys.modules"
+      - "Relative imports need package context"
+      - "A main guard keeps imports free of side effects"
+    narration: >
+      Last topic, modules and imports. A module is usually one dot p y file, and a package
+      groups modules under one name. When you import something the first time, Python runs
+      its top-level code, and caches the module in s y s dot modules. That is why a helper
+      should never start a server or call a model just because it was imported. Relative
+      imports, with a leading dot, only work inside a package. They are not paths from your
+      terminal. And the main guard keeps startup code separate from reusable functions.
+
+  - id: imp_code
+    type: code
+    chapter: "Modules and imports"
+    heading: "A package entry point"
+    file: 23-packaging-modern-python/examples/demo_project/src/demo_pkg/__main__.py
+    lines: [3, 11]
+    narration: >
+      Here is the package entry point from the demo project. It uses a relative import to load
+      the sibling context module. The main function does the work, and the guard at the bottom
+      runs it only when this file is executed directly, never when it is just imported.
+      Run it with python dash m demo pkg, from an environment where the package is installed.
+
+  - id: imp_cmp
+    type: compare
+    chapter: "Modules and imports"
+    heading: "Which import form should you use?"
+    bullets:
+      - "Form | Use it when"
+      - "import demo_pkg.context | You want explicit module ownership"
+      - "from demo_pkg.context import format_context | You call the helper directly"
+      - "from .context import format_context | Importing a sibling inside the package"
+      - "python -m demo_pkg | Running a package's entry point"
+    narration: >
+      A quick comparison. Import the module when you want clear ownership. Import a name when
+      you call it directly. Use a relative import for siblings inside the package,
+      and python dash m to run a package's entry point.
+
+  - id: recap
+    type: recap
+    chapter: "Recap"
+    heading: "What to remember"
+    bullets:
+      - "Set for uniqueness, list for ranking, dict for lookup"
+      - "Generators are single-use; dicts keep one value per key"
+      - "Default to None, then create a fresh list per request"
+      - "Catch specific exceptions and raise from the cause"
+      - "Keep imports free of side effects"
+    narration: >
+      Let's recap. Use a set for uniqueness, a list for ranking, and a dict for lookup.
+      Remember that generators are single use, and dict comprehensions keep one value per key.
+      Never use a mutable default argument. Catch specific exceptions, and keep the cause.
+      And keep imports free of side effects.
+
+  - id: outro
+    type: outro
+    chapter: "Recap"
+    heading: "Next: Module 01 — Functions"
+    bullets: ["Code and lessons: link in the description", "Like, subscribe, and keep building"]
+    narration: >
+      That was module zero. The full lessons and every code example are on GitHub,
+      and the link is in the description. Next up is module one, functions.
+      If this helped, subscribe to Bit Yodha, and remember: Build, Learn, Ship, Repeat.
