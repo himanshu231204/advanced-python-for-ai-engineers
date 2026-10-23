@@ -68,3 +68,27 @@ def test_build_video_produces_mp4(tmp_path):
     video = next(s for s in probe["streams"] if s["codec_type"] == "video")
     assert (video["width"], video["height"]) == (1920, 1080)
     assert float(probe["format"]["duration"]) == pytest.approx(2.5, abs=0.3)
+
+
+def test_format_chapters_rejects_short_last_chapter():
+    with pytest.raises(ValueError, match="10"):
+        format_chapters([("A", 0), ("B", 20), ("C", 40)], total=45)
+
+
+def test_build_video_failure_midway_leaves_no_partial_output(tmp_path, monkeypatch):
+    from bityodha import assemble
+
+    out = tmp_path / "v.mp4"
+    real = assemble._ffmpeg
+
+    def flaky(*args):
+        if "concat" in args:
+            Path(args[-1]).write_bytes(b"truncated")
+            raise RuntimeError("ffmpeg failed: disk full")
+        real(*args)
+
+    monkeypatch.setattr(assemble, "_ffmpeg", flaky)
+    with pytest.raises(RuntimeError, match="ffmpeg"):
+        build_video([_clip(tmp_path, "a", "red", 1.0)], out)
+    assert not out.exists()
+    assert not list(tmp_path.glob("*.part*"))

@@ -21,5 +21,15 @@ _FONT_FILES = {
 }
 
 
+class FontError(RuntimeError):
+    pass
+
+
 def font(kind: Literal["text", "bold", "mono"], size: int) -> ImageFont.FreeTypeFont:
-    return ImageFont.truetype(_FONT_FILES[kind], size)
+    path = _FONT_FILES[kind]
+    try:
+        return ImageFont.truetype(path, size)
+    except OSError as exc:
+        raise FontError(
+            f"font file not found: {path} (on Debian/Ubuntu: apt install fonts-inter fonts-dejavu-core)"
+        ) from exc

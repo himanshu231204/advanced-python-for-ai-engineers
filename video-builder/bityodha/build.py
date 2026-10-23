@@ -13,6 +13,7 @@ from .runcode import run_example, slice_lines
 from .spec import Scene, load_spec
 from .theme import FPS
 
+DELIVERABLES = ("video.mp4", "chapters.txt", "metadata.md", "thumbnail.png")
 SCENE_PAD = 0.4
 REVEAL_START = 0.5
 
@@ -49,6 +50,8 @@ def build_module(spec_path: Path, repo_root: Path, out_dir: Path,
     if work.exists():
         shutil.rmtree(work)
     work.mkdir(parents=True)
+    for name in DELIVERABLES:
+        (out_dir / name).unlink(missing_ok=True)
     voice = tts.ensure_voice(voices_dir) if voices_dir else None
 
     prepared = []
@@ -66,18 +69,21 @@ def build_module(spec_path: Path, repo_root: Path, out_dir: Path,
     total = sum(p[4] for p in prepared)
     check(total)
 
-    clips, chapters, cursor = [], [], 0.0
-    for i, (scene, code, output, wav, duration) in enumerate(prepared):
-        frames = work / f"scene_{i:02d}_frames"
-        _write_frames(scene, code, output, duration, frames)
-        clips.append(SceneClip(frames, FPS, wav, duration))
+    chapters, cursor = [], 0.0
+    for scene, _, _, _, duration in prepared:
         if scene.chapter and (not chapters or chapters[-1][0] != scene.chapter):
             chapters.append((scene.chapter, cursor))
         cursor += duration
     if not chapters or chapters[0][1] != 0:
         chapters.insert(0, ("Intro", 0.0))
+    chapters_text = format_chapters(chapters, total)
 
-    chapters_text = format_chapters(chapters)
+    clips = []
+    for i, (scene, code, output, wav, duration) in enumerate(prepared):
+        frames = work / f"scene_{i:02d}_frames"
+        _write_frames(scene, code, output, duration, frames)
+        clips.append(SceneClip(frames, FPS, wav, duration))
+
     build_video(clips, out_dir / "video.mp4")
     (out_dir / "chapters.txt").write_text(chapters_text + "\n")
     write_metadata(spec, chapters_text, out_dir)

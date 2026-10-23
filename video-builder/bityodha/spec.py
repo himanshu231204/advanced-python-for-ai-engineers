@@ -55,6 +55,16 @@ def _build_scene(raw: dict, repo_root: Path) -> Scene:
         raise SpecError(f"scene {sid}: narration is empty")
     lines = raw.get("lines")
     file = raw.get("file")
+    if raw["type"] == "code" and (not file or lines is None):
+        raise SpecError(f"scene {sid}: code scenes need both file and lines")
+    if raw["type"] == "output" and not file:
+        raise SpecError(f"scene {sid}: output scenes need a file")
+    if lines is not None and not (
+        isinstance(lines, (list, tuple))
+        and len(lines) == 2
+        and all(isinstance(n, int) and not isinstance(n, bool) for n in lines)
+    ):
+        raise SpecError(f"scene {sid}: lines must be [start, end] integers")
     if file is not None:
         path = repo_root / file
         if not path.is_file():

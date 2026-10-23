@@ -101,7 +101,7 @@ def _color(ttype) -> str:
 
 def _highlight(code: str) -> list[list[tuple[str, str]]]:
     lines: list[list[tuple[str, str]]] = [[]]
-    for ttype, value in lex(code, PythonLexer()):
+    for ttype, value in lex(code, PythonLexer(stripnl=False, ensurenl=False)):
         for i, part in enumerate(value.split("\n")):
             if i:
                 lines.append([])

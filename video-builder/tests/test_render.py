@@ -67,3 +67,19 @@ def test_unbreakable_word_raises_render_error():
 
 def test_thumbnail_size_1280x720():
     assert render_thumbnail("A hook title for the video", "MODULE 00").size == (1280, 720)
+
+
+def test_highlight_keeps_leading_and_trailing_blank_lines():
+    from bityodha.render import _highlight
+
+    code = "\nx = 1\n\ny = 2\n"
+    assert len(_highlight(code)) == len(code.split("\n"))
+    assert _highlight(code)[0] == []
+
+
+def test_missing_font_raises_clear_error(monkeypatch):
+    from bityodha import theme
+
+    monkeypatch.setitem(theme._FONT_FILES, "text", "/nonexistent/NoSuchFont-Xyz.otf")
+    with pytest.raises(theme.FontError, match="fonts-inter"):
+        theme.font("text", 20)

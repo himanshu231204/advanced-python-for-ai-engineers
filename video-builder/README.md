@@ -8,7 +8,8 @@ Design: [`docs/superpowers/specs/2026-10-22-module-videos-design.md`](../docs/su
 
 ## Requirements
 
-- Python 3.12+ and `ffmpeg`/`ffprobe` on PATH
+- Python 3.12+ and `ffmpeg` (with libx264) / `ffprobe` on PATH
+- Fonts at the Debian/Ubuntu paths `fonts-inter` and `fonts-dejavu-core` install (`apt install fonts-inter fonts-dejavu-core`); on other systems edit `bityodha/theme.py`
 - `pip install -r requirements.txt`
 - First build downloads the Piper voice (`en_US-lessac-medium`, about 60 MB) into `voices/`
 

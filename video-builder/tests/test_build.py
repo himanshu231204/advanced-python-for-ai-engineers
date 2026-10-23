@@ -69,3 +69,14 @@ def test_build_enforces_duration_guard(tmp_path):
     spec, repo = make_repo(tmp_path)
     with pytest.raises(DurationError):
         build_module(spec, repo, tmp_path / "out", synth=silent_synth(11))
+
+
+def test_failed_build_removes_stale_deliverables(tmp_path):
+    spec, repo = make_repo(tmp_path, bad=True)
+    out = tmp_path / "out"
+    out.mkdir()
+    for name in ("video.mp4", "chapters.txt", "metadata.md", "thumbnail.png"):
+        (out / name).write_text("old")
+    with pytest.raises(RunError):
+        build_module(spec, repo, out, synth=silent_synth(11), check=lambda total: None)
+    assert [p.name for p in out.iterdir() if p.is_file()] == []

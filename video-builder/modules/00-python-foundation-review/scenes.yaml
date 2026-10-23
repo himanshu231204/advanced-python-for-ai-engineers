@@ -20,7 +20,7 @@ scenes:
       They are plain Python bugs. A list that changed when you did not expect it.
       A default argument that remembers the last user. An exception that was swallowed,
       so a failing API call looked like a success. In this video, we fix those foundations
-      in about seven minutes, using real, runnable code from the repository. Let's go.
+      in just a few minutes, using real, runnable code from the repository. Let's go.
 
   - id: why
     type: concept
@@ -91,7 +91,7 @@ scenes:
     lines: [44, 53]
     run: true
     narration: >
-      Here is a ranked hit list with repeated document IDs. Select hits keeps every hit above
+      Here is a ranked hit list with repeated document IDs. Select hits keeps every hit at or above
       the threshold, in the original order, repeats included. Now look at the generator.
       We build it, convert it to a list, and get b, b, c. Then we ask for the list again,
       and it is empty, because the generator is already used up.

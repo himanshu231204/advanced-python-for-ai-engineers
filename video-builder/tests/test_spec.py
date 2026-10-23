@@ -78,3 +78,18 @@ def test_estimate_seconds_uses_150_wpm(tmp_path):
 def test_rejects_estimate_outside_range(tmp_path):
     with pytest.raises(SpecError, match="5:15"):
         load_spec(write_spec(tmp_path, ok_scenes(100)), tmp_path)
+
+
+@pytest.mark.parametrize(
+    "scene",
+    [
+        {"id": "c", "type": "code", "file": "mod/ex.py", "lines": [5], "narration": "x"},
+        {"id": "c", "type": "code", "file": "mod/ex.py", "lines": ["1", "3"], "narration": "x"},
+        {"id": "c", "type": "code", "lines": [1, 2], "narration": "x"},
+        {"id": "c", "type": "code", "file": "mod/ex.py", "narration": "x"},
+        {"id": "c", "type": "output", "narration": "x"},
+    ],
+)
+def test_rejects_incomplete_or_malformed_code_and_output_scenes(tmp_path, scene):
+    with pytest.raises(SpecError, match="scene c"):
+        load_spec(write_spec(tmp_path, ok_scenes() + [scene]), tmp_path)

@@ -36,12 +36,14 @@ def check_duration(total: float) -> None:
         )
 
 
-def format_chapters(chapters: list[tuple[str, float]]) -> str:
+def format_chapters(chapters: list[tuple[str, float]], total: float | None = None) -> str:
     if len(chapters) < 3:
         raise ValueError("YouTube chapters need at least three entries")
     for (title, start), (_, nxt) in zip(chapters, chapters[1:]):
         if nxt - start < 10:
             raise ValueError(f"chapter {title!r} is shorter than 10 seconds")
+    if total is not None and total - chapters[-1][1] < 10:
+        raise ValueError(f"chapter {chapters[-1][0]!r} is shorter than 10 seconds")
     return "\n".join(f"{_mmss(start)} {title}" for title, start in chapters)
 
 
@@ -70,5 +72,10 @@ def build_video(scene_clips: list[SceneClip], out_mp4: Path) -> None:
             segments.append(seg)
         listing = Path(tmp) / "list.txt"
         listing.write_text("".join(f"file '{s}'\n" for s in segments))
-        _ffmpeg("-f", "concat", "-safe", "0", "-i", str(listing),
-                "-c", "copy", "-movflags", "+faststart", str(out_mp4))
+        partial = out_mp4.with_name(out_mp4.stem + ".part.mp4")
+        try:
+            _ffmpeg("-f", "concat", "-safe", "0", "-i", str(listing),
+                    "-c", "copy", "-movflags", "+faststart", str(partial))
+            partial.replace(out_mp4)
+        finally:
+            partial.unlink(missing_ok=True)
